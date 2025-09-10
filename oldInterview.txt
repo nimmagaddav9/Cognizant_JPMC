@@ -1443,5 +1443,26 @@ Internal JavaScript Parse Error. Occurs when the JavaScript source code within N
 User-defined errors. Codes above 4 can be used to indicate custom error conditions within an application.
 
 
+====
+Es6 features
+ES6 is ECMAScript 6. It is nothing but Javascript Version.
+ES6 allows let and const for variable declaration.
+	 we have 8 types of functions  (ES6-ES11)
+	     1) Named Functions
+	     2) Anonymous Functions / Arrow Functions  (ES6)
+	     3) Rest Parameters in Functions
+	     4) Default Parameters in Functions
+	     5) Optional Parameters in Functions
+	     6) IIFE (Immediate Invokable Functional Expressions) (ES9) (2019)
+	     7) Generator Functions
+    8) Constructor Functions.
 
+27. What are the popular hooks in react and explain it's usage?
 
+useState: Manages state in functional components.
+useEffect: Manages side effects in functional components.
+useContext: Consumes context in functional components.
+useReducer: Manage state with a reducer function, For More complex state management.
+useRef: Accesses DOM elements or stores mutable values.
+useCallback: performance improvement usecase
+useMemo: performance improvement usecase.

@@ -1,0 +1,41 @@
+Introduce yourself
+redux explain?
+virtual dom explain?
+how diff real DOM and virtual dom 
+why choose react
+difference between react.js vs angular
+when migrating from .net to react what challenges did you face?
+What is promise?
+what are hooks or class methods did you use?
+multiple api calls at once which method? promise.all, promise.race
+parent to child passed funtion rerender the child use usecallback
+
+
+
+coding:
+Q1. find name of person whose salary > 110
+const iets = [{name: 'we', location: 'Dallas', salary: 110}, {name: 'ffrr', location: 'Austin', salary: 200}];
+
+const person = iets.find(i => i.salary > 110).name;
+console.log(person);
+
+Q2. when count : count +1 repeated twice what happens?
+
+import { useEffect, useRef, useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount((prevVal) => prevVal + 1);
+    setCount((prevVa) => prevVa + 1);
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox{count}</h1>
+      <h2>Start editing to see some magic happen!</h2>
+    </div>
+  );
+}
