@@ -1,0 +1,778 @@
+previous Interview questions
+
+1. Introduce yourself?
+I’m a Senior Full Stack Engineer with 12+ years of experience building .com websites using HTML5, CSS3, JavaScript, React.js, and Redux. 
+For the last 2 years at United Airlines, I’ve been on the React migration team converting .NET pages to React using our in-house ATMOS library. 
+I delivered several security and account management features like Forgot Password, MileagePlus sign-in, Miles-Pooling, TSA Precheck, Known Traveler Number (KTN), and WCAG accessibility updates. 
+Redux-Saga handled our async flows for data fetching and API calls. 
+Key initiatives included Miles-Pooling (rewards sharing), TSA Precheck integration, Under18 account restrictions, and enhanced account security. 
+Previously: 
+• Visa Inc. – Migrated MBDA modules (Application Mgmt, Portfolio Mgmt, Billing, Analytics) for Wells Fargo, Bank of America. 
+• Capital Group – Built Highcharts data visualizations in React, integrated with AEM, and created Creative Workbench for article publishing. 
+• Cerner – Developed medical examination forms. • Office Depot – Built Black Friday reporting tools. 
+• Satinos Technologies – Developed a tax portal and school website for Vignan Schools.
+
+
+2. code split in react?
+Code splitting is a technique to split the React app bundle into smaller chunks so the browser only loads what’s needed. 
+In React, we usually do this with React.lazy and Suspense or route-based splitting. 
+This improves performance by reducing initial load time and loading components on demand.
+
+
+3. HOC (Higher-Order Component)?
+A Higher-Order Component (HOC) is a function that takes a component as input and returns a new component with additional props or logic. 
+It’s mainly used for reusing component logic, like authentication checks, theming, or data fetching.
+
+4. pure component vs class component
+
+Class Component → re-renders by default.
+
+Pure Component → re-renders only if props/state actually change (shallow check).
+
+5. how to enable dark and light theme
+We can enable dark and light themes by maintaining a theme state (e.g., light or dark) and applying conditional class names or CSS variables. 
+A common approach is using CSS custom properties or a library like Material-UI’s ThemeProvider. 
+The user’s preference can be saved in localStorage or matched with the system preference using window.matchMedia.
+
+
+
+6. how to avoid rerendering?
+To avoid unnecessary re-renders, we can use techniques like React.memo for functional components, useMemo for memoizing expensive calculations, and useCallback for memoizing functions. 
+Also, keeping state local to where it’s needed, avoiding prop changes that aren’t required, and using keys correctly help reduce re-renders.
+
+7. example for usecallback
+useCallback memoizes a function so it doesn’t get recreated on every render. 
+It’s useful when passing functions as props to child components, to prevent unnecessary re-renders.
+
+
+8. React Transition API (useTransition)
+useTransition is a React hook that lets you mark state updates as non-urgent (transitions). 
+Urgent updates like typing happen immediately, while transition updates (like filtering a large list) can be deferred so the UI stays responsive.
+
+
+9. custom font implementation vijay
+
+To use custom fonts in React, you can add them via CSS @font-face, link them in index.html (Google Fonts/CDN), or import them in your CSS/SCSS. 
+Once defined, you just apply them with font-family.
+
+React.js Developer Interview Cheatsheet
+
+Core React.js Topics
+
+1. useState
+
+What: Lets you add local state to a functional component.
+
+Why: Store values that change over time (form input, toggle, counters).
+
+const [count, setCount] = useState(0);
+
+2. useEffect
+
+What: Runs side effects after render (data fetch, event listeners, DOM manipulation).
+
+Why: Keeps logic tied to lifecycle (mount, update, unmount).
+
+useEffect(() => {
+  fetchData();
+  return () => cleanup(); // optional cleanup
+}, [dependencies]);
+
+3. useMemo
+
+What: Memoizes a computed value so it doesn’t recalc on every render.
+
+Why: Optimize expensive calculations.
+
+const result = useMemo(() => heavyCompute(data), [data]);
+
+4. useCallback
+
+What: Memoizes a function so it’s not re-created on each render.
+
+Why: Prevents unnecessary re-renders of child components.
+
+const handleClick = useCallback(() => doSomething(value), [value]);
+
+5. useRef
+
+What: Stores a mutable value that survives re-renders (doesn’t trigger rerender).
+
+Why: Useful for DOM refs, timers, or storing previous values.
+
+const inputRef = useRef(null);
+<input ref={inputRef} />;
+
+6. useContext
+
+What: Access global data without prop drilling.
+
+Why: Share theme, auth, or user info across components.
+
+const theme = useContext(ThemeContext);
+
+7. useReducer
+
+What: Alternative to useState for complex state logic with actions & reducers.
+
+Why: Manages complex state transitions (like Redux but local).
+
+const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({ type: "INCREMENT" });
+
+8. useTransition (React 18+)
+Why: Prevents blocking UI during heavy renders.
+
+const [isPending, startTransition] = useTransition();
+startTransition(() => {
+  setFilter(query); // deferred update
+});
+
+
+
+2. useMemo vs useCallback: useMemo memoizes values, useCallback memoizes functions
+
+useMemo
+
+Purpose: Memoizes the result of a computation.
+
+When: Expensive calculations or derived data that shouldn’t re-run unless dependencies change.
+
+const sortedList = useMemo(() => heavySort(list), [list]);
+
+Think: “Cache a value.”
+
+useCallback
+
+Purpose: Memoizes the function itself.
+
+When: Passing callbacks to child components to prevent re-renders (when wrapped in React.memo).
+
+const handleClick = useCallback(() => doSomething(id), [id]);
+
+Think: “Cache a function.”
+
+
+
+
+State Management: Context API vs Redux Toolkit, when to choose Redux over Context, async flows with Thunk or Saga
+
+Context API
+
+What: Native React feature to share state globally without prop drilling.
+
+When: Great for small to medium apps, or when you only need to share simple state (theme, auth, user info).
+
+Limitations: Not built for very complex state logic, no built-in dev tools, debugging is harder.
+
+Redux Toolkit
+
+What: Official, modern way to use Redux with less boilerplate.
+
+When: Best for large apps with complex, shared state and multiple slices of data. Comes with powerful tooling: time-travel debugging, middleware, immutability, async handling.
+
+Extras: Built-in integration with TypeScript, Immer, RTK Query.
+
+When to choose Redux over Context
+
+Multiple features/modules need to share and update state consistently.
+
+Complex state transitions (beyond toggles, theme, or auth).
+
+Need predictability + middleware (logging, analytics, persistence).
+
+Team collaboration requires clear patterns and dev tools.
+
+👉 Rule of thumb:
+
+Small/simple app: Context API.
+
+Enterprise/complex app: Redux Toolkit.
+
+Async flows: Thunk vs Saga
+
+Redux Thunk
+
+Middleware to handle async logic (returns functions instead of actions).
+
+Simple and straightforward for API calls.
+
+const fetchUsers = () => async (dispatch) => {
+  const data = await api.get("/users");
+  dispatch(setUsers(data));
+};
+
+
+Redux Saga
+
+Uses ES6 generators for async.
+
+Powerful for complex async workflows, retries, cancellations, sequencing.
+
+More scalable for large apps with lots of side effects.
+
+function* fetchUsersSaga() {
+  const data = yield call(api.get, "/users");
+  yield put(setUsers(data));
+}
+
+
+• Component Optimization: React.memo, keys, virtualization, batching, lazy loading + Suspense
+
+1. React.memo
+
+What: Higher-order component that memoizes functional components.
+
+Why: Prevents re-render if props haven’t changed.
+
+const MyComponent = React.memo(({ value }) => <div>{value}</div>);
+
+2. Keys
+
+What: Unique identifier for list items.
+
+Why: Helps React’s diffing algorithm know which items changed, added, or removed.
+
+Bad keys cause: Extra re-renders, wrong DOM updates.
+
+list.map(item => <li key={item.id}>{item.name}</li>);
+
+3. Virtualization
+
+What: Render only what’s visible in the viewport (e.g., react-window, react-virtualized).
+
+Why: Huge lists (10k+) won’t kill performance.
+
+<FixedSizeList height={400} itemCount={1000} itemSize={35}>
+  {Row}
+</FixedSizeList>
+
+4. Batching
+
+What: React groups multiple state updates into a single render for performance.
+
+Why: Reduces unnecessary re-renders.
+
+React 18+: Automatic batching even inside async handlers.
+
+setCount(c => c + 1);
+setFlag(f => !f); // both happen in one render
+
+5. Lazy Loading + Suspense
+
+What: Code splitting for components. Loads chunks only when needed.
+
+Why: Smaller initial bundle, faster page load.
+
+const Profile = React.lazy(() => import("./Profile"));
+<Suspense fallback={<Spinner />}>
+  <Profile />
+</Suspense>
+
+
+
+• JSX & Rendering: Virtual DOM vs Real DOM, reconciliation & diffing, controlled vs uncontrolled
+components
+
+JSX
+
+What: Syntax sugar for React.createElement(). Looks like HTML but compiles to JS objects.
+
+Why: Easier to write UI and blend markup + logic.
+
+const element = <h1>Hello</h1>; 
+// Compiles to React.createElement("h1", null, "Hello")
+
+Virtual DOM vs Real DOM
+
+Real DOM: Actual browser DOM. Slow to update when changes are frequent.
+
+Virtual DOM: Lightweight JS representation of the DOM.
+
+Why: React updates the virtual DOM, then diffs it against the old one, and updates only what changed in the real DOM.
+
+👉 Benefit: Faster updates, fewer reflows.
+
+Reconciliation & Diffing
+
+Reconciliation: Process React uses to update the DOM.
+
+Diffing: Algorithm that finds minimal changes by comparing old and new virtual DOM trees.
+
+Example:
+
+If only one item in a list changes, React updates just that node, not the whole list.
+
+Keys matter here: They tell React which items are stable across renders.
+
+Controlled vs Uncontrolled Components
+
+Controlled: Form input values are managed by React state.
+
+Predictable, easy validation.
+
+const [name, setName] = useState("");
+<input value={name} onChange={e => setName(e.target.value)} />
+
+
+Uncontrolled: Form inputs store their own state in the DOM. You use refs to read values.
+
+Less boilerplate, but harder validation.
+
+const inputRef = useRef();
+<input ref={inputRef} />
+
+
+👉 Rule of thumb: Controlled for most forms (validation, business logic). Uncontrolled for simple or performance-heavy forms.
+
+
+2. Advanced React
+
+• Code Splitting & Lazy Loading: React.lazy + Suspense
+• Error Boundaries: Handle runtime crashes in class components
+• SSR vs CSR vs SSG: SEO and performance trade-offs
+
+1. Code Splitting & Lazy Loading
+
+Code Splitting: Breaks your JS bundle into smaller chunks. Only loads what’s needed.
+
+Lazy Loading: Load a component or module only when it’s required.
+
+React Implementation: React.lazy() with Suspense.
+
+const Profile = React.lazy(() => import("./Profile"));
+
+<Suspense fallback={<Spinner />}>
+  <Profile />
+</Suspense>
+
+
+👉 Benefit: Faster initial load, better performance.
+
+2. Error Boundaries
+
+What: Special React components (class-based) that catch JS errors in child components during rendering, lifecycle, or constructors.
+
+Why: Prevents app from crashing entirely — show fallback UI instead.
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error, info) { logError(error, info); }
+  render() { return this.state.hasError ? <h1>Something went wrong.</h1> : this.props.children; }
+}
+
+
+👉 Note: They don’t catch errors in event handlers or async code.
+
+3. SSR vs CSR vs SSG
+
+CSR (Client-Side Rendering):
+
+Browser downloads a blank HTML + JS bundle. React renders on client.
+
+Pros: Interactive apps, fast navigation after first load.
+
+Cons: Slower first paint, SEO weaker.
+
+Example: Create React App.
+
+SSR (Server-Side Rendering):
+
+HTML rendered on the server, sent fully built to client. React hydrates after.
+
+Pros: Faster first paint, better SEO, good for content-heavy sites.
+
+Cons: Higher server cost, more complex setup.
+
+Example: Next.js with SSR.
+
+SSG (Static Site Generation):
+
+Pages are pre-built at build time, served as static HTML.
+
+Pros: Super fast, very cheap to serve, great SEO.
+
+Cons: Not good for frequently changing data (needs re-builds).
+
+Example: Next.js getStaticProps.
+
+👉 Trade-off Summary:
+
+CSR → Great for apps.
+
+SSR → Great for SEO + dynamic content.
+
+SSG → Great for blogs, docs, marketing sites.
+
+
+
+3. JavaScript & TypeScript Refresh
+• ES6+: let/const, arrow functions, destructuring, async/await, promises
+• Event Loop: microtasks vs macrotasks
+• Deep copy vs shallow copy
+• TypeScript: interfaces vs types
+
+ES6+
+
+let/const vs var
+
+var: function-scoped, hoisted.
+
+let: block-scoped, reassignable.
+
+const: block-scoped, immutable binding.
+
+Arrow functions
+
+Short syntax, lexical this (doesn’t bind its own).
+
+const add = (a, b) => a + b;
+
+
+Destructuring
+
+Extract values from arrays/objects easily.
+
+const { name, age } = user;
+
+
+Promises & async/await
+
+Promise: handles async with .then/.catch.
+
+async/await: syntactic sugar for cleaner async code.
+
+const data = await fetch("/api").then(r => r.json());
+
+Event Loop: Microtasks vs Macrotasks
+
+Macrotask Queue: setTimeout, setInterval, setImmediate.
+
+Microtask Queue: Promises (.then, .catch), MutationObserver, queueMicrotask.
+
+Rule: Microtasks run before next macrotask.
+
+setTimeout(() => console.log("macro"), 0);
+Promise.resolve().then(() => console.log("micro"));
+// Output: micro → macro
+
+Deep Copy vs Shallow Copy
+
+Shallow Copy: Copies top-level only, nested objects still reference original.
+
+Example: Object.assign({}, obj) or { ...obj }.
+
+Deep Copy: Creates new copies of all nested objects.
+
+Example: structuredClone(obj) (modern), or JSON.parse(JSON.stringify(obj)).
+👉 Use deep copy when mutating nested objects, to avoid bugs.
+
+TypeScript: Interfaces vs Types
+
+Interface
+
+Describes object shape, extendable (declaration merging).
+
+interface User { name: string; age: number; }
+
+
+Type Alias
+
+Defines any type (union, primitive, tuple, etc.).
+
+Cannot merge declarations.
+
+type User = { name: string; age: number; };
+type Status = "success" | "error";
+
+
+👉 Rule of thumb:
+
+Use interface for objects/contracts you want to extend.
+
+Use type for unions, primitives, and advanced type composition.
+
+
+
+4. System/Architecture
+• Micro Frontends: Module Federation, pros & cons
+• Design Systems: consistency across apps
+• Security in React: prevent XSS, sanitize inputs, JWT/OAuth2, HTTPS
+• Accessibility (WCAG): aria-labels, keyboard navigation, color contrast
+
+1. Micro Frontends (MFE)
+
+What: Breaking a large frontend into smaller, independently deployable apps.
+
+How: Webpack Module Federation, single-spa, Nx, etc.
+
+Pros:
+
+Teams work independently (different stacks possible).
+
+Faster deployments (ship a single feature).
+
+Easier scaling.
+
+Cons:
+
+Complex setup (routing, shared state).
+
+Larger bundle size if dependencies aren’t shared.
+
+Harder end-to-end testing.
+
+👉 One-liner: “MFEs let you scale frontend like microservices, but add complexity in integration and performance.”
+
+2. Design Systems
+
+What: A reusable library of UI components + styles (like Material UI, in-house ATMOS, Chakra).
+
+Why:
+
+Consistency across products.
+
+Faster dev cycles.
+
+Easy adoption of accessibility and brand standards.
+
+Example: Buttons, inputs, modals, typography tokens.
+
+👉 One-liner: “Design systems enforce consistency, improve dev speed, and ensure accessibility is built-in.”
+
+3. Security in React
+
+Prevent XSS: Never inject raw HTML (dangerouslySetInnerHTML). Escape/sanitize user inputs.
+
+Sanitize Inputs: Use libs like DOMPurify. Validate on both client & server.
+
+Authentication:
+
+JWT (JSON Web Token): stateless, stored in cookies/secure storage.
+
+OAuth2: for third-party identity providers (Google, Facebook, Okta).
+
+Transport Security: Always use HTTPS. Add CSP (Content Security Policy).
+
+👉 One-liner: “React security means preventing XSS, sanitizing inputs, using JWT/OAuth2 for auth, and enforcing HTTPS.”
+
+4. Accessibility (WCAG)
+
+WCAG: Web Content Accessibility Guidelines.
+
+Practices:
+
+ARIA labels: <button aria-label="Close" />.
+
+Keyboard navigation: tabIndex, focus management.
+
+Color contrast: Meet AA/AAA standards.
+
+Screen readers: Use semantic HTML (<nav>, <header>).
+
+Testing: axe-core, Lighthouse, NVDA/VoiceOver.
+
+👉 One-liner: “Accessibility is making apps usable for everyone — proper ARIA, keyboard support, and contrast checks following WCAG 2.1.”
+
+
+
+
+5. Behavioral
+• Use STAR (Situation, Task, Action, Result) for experience-based answers
+• Examples: United Airlines migration (.NET to React, ATMOS, Redux-Saga, Miles Pooling)
+• Mentorship: code reviews, pairing, knowledge-sharing
+• Challenges: async flows, performance, accessibility compliance
+
+STAR Method Refresher
+
+S – Situation: Context/background.
+
+T – Task: What was expected of you.
+
+A – Action: What you did.
+
+R – Result: The outcome (quantifiable if possible).
+
+👉 Keep answers tight, 1–2 minutes each, highlight leadership + impact.
+
+Example 1 – United Airlines Migration
+
+Situation: Legacy .NET pages were slow and hard to maintain. Needed migration to React.
+
+Task: Lead React migration team to modernize user account features.
+
+Action:
+
+Migrated .NET pages to React using ATMOS library.
+
+Implemented Redux-Saga for async flows (login, password reset).
+
+Built features like Miles Pooling, TSA PreCheck, and Known Traveler Number integration.
+
+Enforced WCAG compliance (screen readers, keyboard navigation).
+
+Result: Reduced page load time by ~30%, improved accessibility score to AA, and shipped secure account features used by millions.
+
+Example 2 – Mentorship
+
+Situation: Team had a mix of senior and junior devs.
+
+Task: Ensure high-quality code delivery and upskill team.
+
+Action:
+
+Led code reviews with emphasis on readability and performance.
+
+Paired with juniors to debug complex async flows.
+
+Ran short knowledge-sharing sessions on hooks, Redux-Saga, and accessibility.
+
+Result: Improved onboarding speed for new hires, reduced PR rework by ~40%.
+
+Example 3 – Overcoming Challenges
+
+Async Flows: API chaining was messy → standardized async handling with Redux-Saga.
+
+Performance: Large pages re-rendering → optimized with React.memo, virtualization.
+
+Accessibility: Designers didn’t account for WCAG → added ARIA roles, screen reader testing.
+
+Result: Cleaner architecture, faster UI, and compliance without slowing delivery.
+
+
+
+6. Practice Questions
+• Difference between functional and class components
+• How React handles reconciliation?
+• How to handle API calls with hooks?
+• How to prevent prop drilling?
+• Explain useReducer with an example
+• Throttling vs debouncing (React use case)
+• How to optimize a slow React app?
+
+Difference between functional and class components
+
+Functional: Plain functions, hooks for state/effects, smaller and faster to write, easier to test.
+
+Class: extends React.Component, lifecycle methods, no hooks. Mostly legacy.
+
+Today’s rule: Prefer functional + hooks; classes only for legacy/error boundaries.
+
+How React handles reconciliation
+
+React builds a virtual DOM for the new render, diffs it with the previous tree, and applies the minimal changes to the real DOM.
+
+Heuristics: Different element type → replace subtree. Same type → update props and recurse.
+
+Keys in lists tell React which items are stable; wrong keys cause extra re-renders or DOM glitches.
+
+How to handle API calls with hooks
+
+Use useEffect for lifecycle, store data with useState, handle cleanup and cancellation.
+
+function Users() {
+  const [users, setUsers] = React.useState([]);
+  const [error, setError] = React.useState(null);
+  React.useEffect(() => {
+    const ctrl = new AbortController();
+    (async () => {
+      try {
+        const res = await fetch("/api/users", { signal: ctrl.signal });
+        if (!res.ok) throw new Error("Network error");
+        setUsers(await res.json());
+      } catch (e) { if (e.name !== "AbortError") setError(e.message); }
+    })();
+    return () => ctrl.abort();
+  }, []);
+  // render users or error...
+}
+
+
+For larger apps, prefer RTK Query, SWR, or React Query for caching, retries, deduping.
+
+How to prevent prop drilling
+
+Context API for cross-cutting concerns (theme, auth).
+
+State libraries when state is complex/shared (Redux Toolkit, Zustand).
+
+Collocate state: keep state near where it’s used; lift only when needed.
+
+const AuthCtx = React.createContext(null);
+// Provider at top; useContext() in deep children instead of passing props down many levels
+
+Explain useReducer with an example
+
+Good for complex state transitions or when next state depends on previous state.
+
+const initial = { count: 0 };
+function reducer(state, action) {
+  switch (action.type) {
+    case "inc": return { count: state.count + 1 };
+    case "dec": return { count: state.count - 1 };
+    case "set": return { count: action.value };
+    default:    return state;
+  }
+}
+function Counter() {
+  const [state, dispatch] = React.useReducer(reducer, initial);
+  return (
+    <>
+      <button onClick={() => dispatch({ type: "dec" })}>-</button>
+      <span>{state.count}</span>
+      <button onClick={() => dispatch({ type: "inc" })}>+</button>
+    </>
+  );
+}
+
+
+Pairs well with Context to create a small, Redux-like store.
+
+Throttling vs debouncing (React use case)
+
+Debounce: Wait until the user stops triggering the event, then run once.
+
+Use for search input, resize-end. Prevents spammy calls.
+
+Throttle: Run at most once every N ms while events continue.
+
+Use for scroll position, window resize calculations.
+
+// Debounce example (basic)
+function useDebounce(fn, delay) {
+  const t = React.useRef();
+  return React.useCallback((...args) => {
+    clearTimeout(t.current);
+    t.current = setTimeout(() => fn(...args), delay);
+  }, [fn, delay]);
+}
+
+How to optimize a slow React app
+1.	Kill unnecessary re-renders
+o	React.memo for pure child components.
+o	useCallback/useMemo to stabilize props for memoized children.
+o	Split large contexts; avoid context value churn.
+2.	Reduce work per render
+o	Move heavy calculations into useMemo.
+o	Derived data/selectors instead of recomputing in render.
+3.	Code splitting
+o	React.lazy + Suspense for routes/feature modules.
+4.	Virtualize long lists
+o	react-window / react-virtualized.
+5.	Minimize state surface
+o	Keep state local; avoid putting everything in global state.
+6.	Network/UI
+o	Cache data (React Query/RTK Query), prefetch, paginate.
+o	Images: proper sizes, lazy-load.
+7.	SSR/SSG where it helps
+o	Faster first paint and better SEO for content pages.
+8.	Measure
+o	Use React Profiler, Lighthouse, Performance tab. Fix the top offenders first.
+
+
+7. Last-Minute Strategy
+• First 3 hours: Review React hooks deeply
+• Next 2 hours: Do 2–3 coding problems (arrays, strings, promises)
+• Next 2 hours: Rehearse STAR project stories
+• Final 2 hours: Flashcards (Redux vs Context, useMemo vs useCallback, Virtual DOM)
