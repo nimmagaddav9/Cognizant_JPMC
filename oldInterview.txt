@@ -1,5 +1,28 @@
 previous Interview questions
 
+1. can you walk me through your resume.
+
+I am a core UI Developer with 12+ years of experience building .com websites for different organizations using HTML5, CSS3, JavaScript, React.js, and Redux. 
+In the past 2 years, I worked on the React migration team, where I converted the .net pages to react on united.com. 
+Frontend is React, and used ATMOS (Own library) components used company wide.
+
+Worked on Security features for users where they can manage there account like Forgot password, Forgot MileagePlus number, security questions, Sign-in features, Miles-Pooling, United Club pass,  Recent Activity, dashboard updates and KTN(Known Traveler Number), Accessibility guidelines features on united.com.
+
+used middleware such as redux-saga to handle asynchronous tasks such as API calls, data fetching, and impure actions in a more organized and efficient way.
+
+The new initiative worked on Miles-Pooling( points you get after traveling), TSA Precheck, Account security and management features, and Under18.
+
+Previously worked with Accelerator team for Visa Inc. remediation of MBDA modules like Application Management, Account Management, Portfolio Management, Analytics, Recurring billing, Virtual Terminal, etc for bank users like Wells Fargo,  Bank of America, etc
+
+Capital Group worked on DAVIS Project. Davis stands for Data visualization where we build different highcharts using react and integrate into the AEM., the backend is Java. Previously I worked on Creative Workbench, a writing tool where articles are published on capital group websites.
+
+At Cerner Corporation worked on the medical examination forms.
+
+In Office Depot worked on black Friday reporting.
+
+Satinos Technologies created a tax portal and a schoomin website for the Vignan schools.
+
+
 1. Introduce yourself?
 I’m a Senior Full Stack Engineer with 12+ years of experience building .com websites using HTML5, CSS3, JavaScript, React.js, and Redux. 
 For the last 2 years at United Airlines, I’ve been on the React migration team converting .NET pages to React using our in-house ATMOS library. 
@@ -9,7 +32,8 @@ Key initiatives included Miles-Pooling (rewards sharing), TSA Precheck integrati
 Previously: 
 • Visa Inc. – Migrated MBDA modules (Application Mgmt, Portfolio Mgmt, Billing, Analytics) for Wells Fargo, Bank of America. 
 • Capital Group – Built Highcharts data visualizations in React, integrated with AEM, and created Creative Workbench for article publishing. 
-• Cerner – Developed medical examination forms. • Office Depot – Built Black Friday reporting tools. 
+• Cerner – Developed medical examination forms. 
+• Office Depot – Built Black Friday reporting tools. 
 • Satinos Technologies – Developed a tax portal and school website for Vignan Schools.
 
 
@@ -771,8 +795,653 @@ o	Faster first paint and better SEO for content pages.
 o	Use React Profiler, Lighthouse, Performance tab. Fix the top offenders first.
 
 
-7. Last-Minute Strategy
-• First 3 hours: Review React hooks deeply
-• Next 2 hours: Do 2–3 coding problems (arrays, strings, promises)
-• Next 2 hours: Rehearse STAR project stories
-• Final 2 hours: Flashcards (Redux vs Context, useMemo vs useCallback, Virtual DOM)
+What is Prototype chaining? Overriding the parent class functionality with child class functionality.
+What is callbacks?  - Passing "one function" to "another function" as an argument called as "CallBack"
+What is CallBack Hell?  Providing the tightly coupled code with call backs is called callback hell. 
+What is the problem of Callback hell? Readability is less and difficult. Remedy for callback is promises.
+Callback hell is Not a recommended code. Call add, sub, multiplication, division. It is  not easy to understand.
+
+
+ Promises Establishes the communication between "producer" and "consumer".
+ 
+        - Promises also called as "special javascript objects".
+ 
+        - we will create Promises by using "Promise" class constructor.
+ 
+        - Promises have 3 states
+ 
+            1) success  (resolve)
+ 
+            2) error    (reject)
+ 
+            3) pending
+ 
+        - we will consume promises by using "then()"
+
+        To consume the promise we call async and await instead of then(). Latest released in ES9.
+
+  HTML5 Supports two types of Storages.
+             1) local storage
+            2) session storage
+ 
+    - whenever we "close the browser" or "opens the new tab" we won't lost the data from local storage.
+ 
+    - whenever we "close the browser" or "opens the new tab" we will lost the data from session storage.
+ 
+    - "localStorage" is the predefined object used to work with the local storage.
+ 
+    - "sessionStorage" is the predefined object used to work with the session storage.
+ 
+    - we will store the data in the form of a "key & value" pairs.
+
+    Closure - if any inner function accessing the outer function data, then such scenario called as closure
+
+
+1. tell me about yourself?
+
+2. which version of react.js are using? v16.8, react 18, v19 dec 5th, 2024
+
+3. what is async await?
+
+In JavaScript, async and await are used to handle asynchronous operations in a more readable and manageable way, replacing traditional callback-based approaches.
+
+Explanation
+async function: Declares that a function returns a Promise, allowing you to use await inside it.
+
+await keyword: Pauses execution until a Promise resolves, making asynchronous code look more like synchronous code.
+
+Key Benefits
+Makes asynchronous code easier to read.
+
+Helps avoid callback hell.
+
+Improves error handling with try-catch.
+
+4.  what is synchronous vs asychronous?
+
+Synchronous Code
+Executes line by line, meaning each operation must finish before the next one starts.
+
+Blocking: If one task takes a long time, everything after it waits.
+
+
+Asynchronous Code
+Executes without waiting for a previous task to complete.
+
+Non-blocking: Tasks can run independently, allowing multiple operations to happen simultaneously.
+
+Often uses callbacks, Promises, or async/await.
+
+5. how to call multiple api calls simunatenously?
+
+You can call multiple API requests simultaneously using Promise.all, Promise.allSettled, or async/await with parallel execution. 
+
+Using Promise.all (Best for Successful Responses)
+
+✅ Executes all requests in parallel ❌ Fails completely if one request errors out
+
+
+
+Using Promise.allSettled (Handles Errors Gracefully)
+
+✅ All requests execute, even if some fail ✅ Provides individual success/failure reports
+
+
+
+Using async/await with Parallel Execution
+✅ Parallel execution without Promise.all ✅ More control over individual responses
+
+Which One Should You Use?
+Use Promise.all when all API calls must succeed together.
+
+Use Promise.allSettled when you want results even if some APIs fail.
+
+Use async/await for a more manual approach with better readability.
+
+6. what is controlled and uncontrolled components?
+
+Use controlled components for most cases where React state should manage inputs.
+
+Use uncontrolled components if you need direct DOM access or lightweight components.
+
+7. what is Debouncing ?
+
+Debouncing is a technique used to improve performance by limiting the rate at which a function executes. 
+It ensures that a function (typically event handlers like input changes, scrolling, or resizing) only runs after a specified delay, preventing unnecessary executions.
+
+8. What is useEffect hook?
+The useEffect hook in React is a powerful tool used for managing side effects in functional components.
+It allows you to run logic after the component renders, handling things like data fetching, subscriptions, or updating the DOM.
+
+How Does useEffect Work?
+It executes after the component renders.
+
+Can run once, on updates, or on cleanup—depending on dependencies.
+
+Helps avoid unnecessary logic inside the main component body.
+
+9. did you work on custom hooks?
+A custom hook in React is a reusable function that encapsulates logic using other React hooks (useState, useEffect, etc.). 
+It allows you to extract common behavior from components and keep them clean and maintainable.
+
+Common Use Cases for Custom Hooks
+API calls (useFetch)
+
+Local storage management (useLocalStorage)
+
+Form validation
+
+Handling authentication
+
+Debouncing functions
+
+
+10. how to make api call without useEffect?
+
+You can make API calls in React without using useEffect by triggering them inside event handlers, functions, or lifecycle methods in class components.
+
+11. What is promise.All() and race?
+
+Both Promise.all and Promise.race are useful methods for handling multiple promises in JavaScript, but they behave differently.
+
+Promise.all (Waits for All Promises to Resolve)
+Promise.race (Returns the First Settled Promise)
+
+12. How do you integrate 2 API in front end with useEffect?
+
+Use Promise.all inside one useEffect → When both APIs need to be fetched together.
+
+Use multiple useEffect hooks → When API calls are independent.
+
+13. How Do Uncontrolled Components Work?
+
+The value of an input field is stored directly in the DOM.
+
+React does not track state updates for the input field.
+
+You access the current value when needed, usually via useRef.
+
+14. redux architecture? 
+
+Redux is a state management library for JavaScript applications, commonly used with React. 
+It follows a predictable, unidirectional data flow, making state management more manageable, especially for large applications.
+
+Redux Data Flow
+Redux follows a structured flow to ensure predictable state updates:
+
+1️⃣ Action → Describes what happens (e.g., "ADD_ITEM"). 
+2️⃣ Reducer → Handles the action and updates state. 
+3️⃣ Store → Holds the global application state. 
+4️⃣ View (React Component) → Receives state data and dispatches actions.
+
+15. what is == vs ===
+
+== and === are comparison operators, but they behave differently in terms of type coercion.
+
+Which One Should You Use?
+
+Use === (strict equality) in most cases to avoid unexpected behavior.
+
+Use == only when intentional type conversion is required.
+
+16. can you explain your implementation
+// write code for 1 text field, enter the data.
+// display table product id, name, description
+//top of table display text field and search button - click on search need to show table with hardcode data.
+
+17. have you worked as a LEAD?
+
+"Yes, I’ve worked as a lead on multiple React projects. 
+I was responsible for guiding the team on best practices, making architectural decisions, and ensuring scalable and maintainable code. 
+I also mentored junior developers and conducted code reviews to maintain high coding standards. 
+My role involved close collaboration with stakeholders to align development with business goals."
+
+18. what is return and commit in JSX?
+
+return is essential in JSX—it defines the UI a component renders.
+
+commit is part of React’s internal lifecycle—it happens when React applies changes to the DOM.
+
+Developers rarely interact with "commit" directly, but useEffect runs after React commits updates.
+
+19. What is map()? and reduce()?
+
+Use map() when transforming each item (e.g., formatting names, adjusting values).
+
+Use reduce() when combining data into a single result (e.g., summing prices, merging arrays).
+
+20. what is the output of map()?
+
+The output of map() is always a new array with transformed elements based on the function provided.
+
+✅ The original array remains unchanged ✅ The new array contains modified elements
+
+Key Takeaways
+map() always returns a new array (original array stays untouched).
+
+The number of elements remains the same, unless explicitly modified.
+
+Works well for transforming data (e.g., formatting, extracting values, modifying structures).
+
+=======================================================================
+React.js
+Javascript
+Coding question
+HTML Questions
+
+
+
+2. What is HOC?
+A higher-order function is a function that treats other functions as data, either by taking them as arguments or returning them. 
+
+
+// Higher-order function that takes a function as an argument 
+
+function operate(x, y, operation){ 
+
+    return operation(x, y); // calls the passed function with x and y 
+
+} 
+
+ 
+
+// function to be passed as arguments 
+
+const add = (a, b) => a + b; // arrow function for addition 
+
+const multiply = (a, b) => a * b; // arrow function for multiplication 
+
+ 
+
+//using higher order function 
+
+console.log(operate(5, 3, add)); // 8 
+
+console.log(operate(5,3, multiply)); // 15 
+
+
+
+
+2. What is call(), apply(), bind()?
+
+Call() -- if we want to create second memory location will interact with 1st memory location.
+
+Apply – if we want to pass array instead of independent parameter
+
+Bind() - merge memory location 1 and memory location 2 -->merge 2 memory locations-->new memory location.
+
+What is the USE? Call function advanced function APPLY, call and apply advanced version is bind().
+Purpose is same. Call, bind, apply –used to access 2 objects in different memory location
+
+
+3. What is shallow copy and deep copy?
+
+A shallow copy creates a new object with references to the same memory locations as the original object for nested properties. 
+This means changes to nested objects in the copy will affect the original object.
+
+javascript example: 
+const originalObject = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...originalObject };
+
+shallowCopy.b.c = 3;
+console.log(originalObject.b.c); // Output: 3
+
+Deep Copy
+A deep copy creates a new object with new memory locations for all nested properties, ensuring changes to the copy don't affect the original object.
+
+JavaScript Example:
+
+javascript
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopy = JSON.parse(JSON.stringify(originalObject));
+
+deepCopy.b.c = 3;
+console.log(originalObject.b.c); // Output: 2
+
+4. how do you optimnize performance in React app?
+
+1. Memoization with useMemo and useCallback:  Use this hooks to memoize values and, reducing unnecessary recalculations.
+2. Optimizing Renders with React.Fragment: Use it to avoid unnecessary wrapper elements that could cause additional DOM nodes.
+3. Lazy loading with React.lazy: Use it to load components lazily, reducing the intial bundle size and imporving intial loading performance.
+4. Code splitting: Employ code splitting to divide your application into smaller chunks that are loaded on demand, improving initial load times.
+5. Optimizing Images and Assets:  Compress and optimize images, use responsive images and leverage lazy loading for images to reduce network and rendering overhead.
+
+
+5. What is promise.All() and race?
+Promise.all takes an array of promises and waits for all of them to resolve. 
+If any promise rejects, the entire Promise.all immediately rejects with that reason
+
+Key Points:
+Resolves when all promises are successful.
+Rejects if any promise fails.
+Returns an array of results in the same order as the input.
+
+Example:
+javascript
+
+CopyEdit
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+const promise3 = Promise.resolve(3);
+
+Promise.all([promise1, promise2, promise3])
+  .then(results => console.log(results))  // [1, 2, 3]
+  .catch(err => console.error(err));
+
+
+6. What is callback hell? how to avoid it?
+Callback hell" refers to a situation in programming where multiple asynchronous operations are handled using nested callback functions,
+creating a complex and difficult-to-read code structure, often resembling a pyramid shape; 
+to avoid it, use techniques like Promises and the async/await syntax to manage asynchronous operations in a more linear fashion,
+making your code cleaner and easier to maintain. 
+
+
+7. What is virtual DOM? example?
+Suppose line of code is changed , processing is done on particular line. 
+It will process the whole code in real DOM. Virtual DOM is faster.
+
+8. How do you integrate API in front end?
+To integrate an API in a React.js frontend application, you'll typically use the fetch API or
+a library like Axios to make HTTP requests, handle responses, and then display the data in your React components
+
+
+9. If the network request --> API response is 400 ? how do you proceed?
+Test API endpoint in Postman or similar tools to isolate frontend vs. backend issues
+Check for network connectivity problems
+Verify the API base URL is correct for the environment (dev/staging/prod)
+
+
+10. what is local storage and session storage? advantages?
+
+Session Storage and Local Storage are both part of the Web Storage API that allow you to store key-value pairs in a user's browser, but they have different use cases and lifecycles.
+1. Session Storage
+Scope: Per tab or window. Data is only available for the duration of the page session.
+Lifetime: Cleared when the tab or browser is closed.
+Capacity: ~5MB (varies by browser).
+Access: Same-origin policy — only accessible from pages with the same protocol, host, and port.
+Use Cases:
+Temporary data like form inputs, filters, or UI states that shouldn't persist after the session ends.
+Storing data that shouldn't be shared across tabs/windows.
+Example:
+javascript
+CopyEdit
+// Set item
+sessionStorage.setItem("user", "John");
+
+// Get item
+let user = sessionStorage.getItem("user");
+
+// Remove item
+sessionStorage.removeItem("user");
+
+
+2. Local Storage
+Scope: Per domain. Data is persistent across sessions and tabs.
+Lifetime: Remains even after closing the browser, until explicitly cleared.
+Capacity: ~5-10MB (varies by browser).
+Access: Same-origin policy.
+Use Cases:
+Persistent user preferences (e.g., theme settings).
+Caching data (e.g., API responses) for faster page loads.
+Shopping cart data in e-commerce sites.
+Example:
+javascript
+CopyEdit
+// Set item
+localStorage.setItem("theme", "dark");
+
+// Get item
+let theme = localStorage.getItem("theme");
+
+// Remove item
+localStorage.removeItem("theme");
+
+
+
+11. What is code splitting?
+
+Code Splitting in React
+Code splitting is a technique that breaks your app into smaller chunks (bundles) that can be loaded on demand, 
+improving initial load performance. Here's how to implement it in React:
+
+React.lazy and Suspense
+The most common approach using React's built-in features:
+jsx
+Copy
+import React, { Suspense, lazy } from 'react';
+
+// Instead of: import ExpensiveComponent from './ExpensiveComponent';
+const ExpensiveComponent = lazy(() => import('./ExpensiveComponent'));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ExpensiveComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+}
+
+
+
+12. What is asynchronous and synchronous operations?
+
+
+13. What is connect?
+
+
+14. What is controlled and uncontrolled components?
+
+Characteristics of Controlled Components:
+Form values are stored in React state
+Changes are handled through event handlers
+The component explicitly sets and updates the input value
+More predictable as React controls the input state at all times
+Enables immediate validation, conditional disabling, and formatting
+
+Characteristics of Uncontrolled Components:
+Form values are stored in the DOM, not in React state
+Accessed using refs rather than event handlers
+Uses defaultValue instead of value for initial values
+Simpler code with less boilerplate for basic forms
+Helpful when integrating with non-React code
+
+
+
+15. coding question
+//"programming" string - 
+//find the first duplicate character from given string.
+
+
+
+
+//"programming" string - 
+//find the first duplicate character from given string.
+
+const findduplicate = (str) =>{
+  const chars = [];
+  let charFound = null;
+  for(let i = 0 ; i < str.length; i++){
+    if(chars.includes(str[i])){
+        charFound = str[i]
+    }else{
+      chars.push(str[i])
+    }
+
+    
+     console.log("debug", chars , charFound, str[i])
+     if(charFound) break;
+
+  }
+  return charFound;
+}
+
+console.log(findduplicate("apple"));
+
+
+
+
+
+promise.all()
+
+==================================
+
+
+1. Have you used React custom hook? 
+
+Yes, I have used React custom hooks. Custom hooks in React allow you to extract and reuse stateful logic across multiple components, 
+which helps in keeping components clean and more maintainable. 
+They follow the same naming convention as built-in hooks (starting with "use"), and they allow you to share logic without repeating code.
+
+For example, I’ve created custom hooks like useFetch for handling API requests or useForm to manage form state.
+
+useResize custom hook with different screens. breakpoint occur return screen size 1400 px Screensize mobile and desktop.
+
+useMediaQuery:
+Enables components to adapt to different screen sizes or devices by conditionally rendering content based on media queries.
+
+
+2. event loop?
+
+The event loop in React, as in all JavaScript environments, manages asynchronous operations, ensuring the UI remains responsive. 
+It continuously monitors the call stack and the task queue.
+When the call stack is empty, the event loop takes the first task from the queue and places it onto the call stack for execution.
+
+3. which version of react? v18
+
+4. CSS Grid vs Flex
+In CSS, "Grid" refers to the CSS Grid Layout, which allows for two-dimensional positioning of elements by creating a grid with rows and columns, 
+while "Flex" refers to Flexbox, a layout system designed for one-dimensional alignment, meaning you can arrange elements in either a row or a column only; 
+
+5. How to optimization performance in HTML?
+
+To optimize HTML performance, 
+1. focus on minimizing file size by minifying code, 
+2. optimizing images, 
+3. leveraging browser caching, 
+4. using a Content Delivery Network (CDN), 
+5. deferring JavaScript loading, and 
+6. ensuring semantic and valid HTML markup
+
+6. coding question:
+
+https://dummyjson.com/docs/users
+
+show FName, LastName, Age
+
+users.tsx
+
+
+import react from "react";
+
+const Users = ({ firstName, lastName, age }) => {
+  return (
+    <div className="user-card">
+      <p>{firstName}</p>
+      <p>{lastName}</p>
+      <p>{age}</p>
+    </div>
+  );
+};
+
+export default Users;
+
+app.tsx
+import { useEffect, useState } from "react";
+import "./styles.css";
+import Users from "./Users";
+
+export default function App() {
+  const [users, setUsers] = useState([]);
+
+  const fetchApi = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUsers(data.users);
+      });
+  };
+  useEffect(() => {
+    fetchApi("https://dummyjson.com/users");
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      {users.length && users.map((props) => <Users {...props} />)}
+    </div>
+  );
+}
+
+6. Middleware used? Redux, redux-thunk, redux-saga
+
+
+
+====================================================================================
+
+node.js questions
+------------------------------------------
+1. Can you write SQL Query for 2 tables, 
+
+student table --> id, name
+
+table 2:--> table for change, contains id, studentid 
+
+
+join the table 1, 2 and fetch the name
+
+Status : 1 fetch only those
+
+
+innerjoin--> where clause
+
+
+
+Output: To join these two tables and fetch the name from the student table using the studentid from the second table (let's call it change), you can use an INNER JOIN like this:
+
+SELECT s.name
+FROM student s
+JOIN change c ON s.id = c.studentid;
+
+
+============================
+
+1. What is ExpressJS? Express is a flexible Node.js web application framework that provides a wide set of features to develop web and mobile applications
+
+2. What is an Event Loop in Node.js?
+Event loops handle asynchronous callbacks in Node.js. 
+It is the foundation of Node.js's non-blocking input/output in Node.js, making it one of the most important environmental features.
+
+3. For Node.js, why does Google use the V8 engine?
+The V8 engine, developed by Google, is open-source and written in C++. Google Chrome makes use of this engine. 
+V8, unlike the other engines, is also utilized for the popular Node.js runtime. 
+V8 was initially intended to improve the speed of JavaScript execution within web browsers. 
+Instead of employing an interpreter, V8 converts JavaScript code into more efficient machine code to increase performance. 
+It turns JavaScript code into machine code during execution by utilizing a JIT (Just-In-Time) compiler, as do many current JavaScript
+engines such as SpiderMonkey or Rhino (Mozilla).
+
+
+Describe Node.js exit codes?
+
+Node.js exit codes are numerical values that a Node.js process returns to the operating system upon completion. 
+These codes signal whether the process completed successfully or encountered an error.
+
+0:
+Success. Indicates that the program executed without errors.
+1:
+Uncaught Fatal Exception. Signifies that an uncaught exception occurred and was not handled by a try...catch block or an uncaughtException event handler.
+2:
+Unused (Reserved by Bash). This code is reserved for misuse of shell built-ins in Bash.
+3:
+Internal JavaScript Parse Error. Occurs when the JavaScript source code within Node.js's bootstrapping process encounters a parsing error. This is rare and typically happens during Node.js development.
+>4:
+User-defined errors. Codes above 4 can be used to indicate custom error conditions within an application.
+
+
+
+
